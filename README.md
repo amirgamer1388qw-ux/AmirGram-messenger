@@ -54,3 +54,11 @@ https://github.com/amirgamer1388qw-ux
 ## ⭐ Support
 
 If you like the project, feel free to ⭐ star the repository.
+
+## important⚠️⚠️⚠️
+
+When you launch the messenger, the team invite code is
+```
+team2026
+```
+**You can change this code from the admin panel.**
