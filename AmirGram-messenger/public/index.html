@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- AmirGram © 2026 | https://github.com/amirgamer1388qw-ux -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- AmirGram | GitHub: https://github.com/amirgamer1388qw-ux -->
+  <title>AmirGram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Login / Register ===== -->
+  <section id="auth" class="screen">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-mark">T</div>
+        <h1>AmirGram</h1>
+      </div>
+
+      <div class="tabs">
+        <button type="button" class="tab-btn active" data-tab="login">Login</button>
+        <button type="button" class="tab-btn" data-tab="register">Sign up</button>
+      </div>
+
+      <div id="loginTab" class="tab-panel">
+        <p>Sign in with your username and password.</p>
+        <input id="loginUser" placeholder="Username" maxlength="30" autocomplete="off">
+        <input id="loginPass" type="password" placeholder="Password">
+        <button id="loginBtn">Login</button>
+      </div>
+
+      <div id="registerTab" class="tab-panel hidden">
+        <p>Create a new account (team invite code required).</p>
+        <input id="regUser" placeholder="Choose a username" maxlength="30" autocomplete="off">
+        <input id="regPass" type="password" placeholder="Choose a password">
+        <input id="regInvite" placeholder="Team invite code">
+        <button id="registerBtn">Create account</button>
+      </div>
+
+      <div id="authErr"></div>
+    </div>
+  </section>
+
+  <!-- ===== Main app ===== -->
+  <section id="app" class="hidden">
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="me-avatar" id="meAvatar"></div>
+        <b id="meName"></b>
+        <button type="button" id="settingsBtn" class="icon-btn" title="Settings">
+          <svg viewBox="0 0 24 24" width="19" height="19"><path d="M19.4 13a7.6 7.6 0 000-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 00-1.7-1L15 3h-4l-.3 2.5a7.6 7.6 0 00-1.7 1l-2.4-1-2 3.4L6.6 11a7.6 7.6 0 000 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 001.7 1L11 21h4l.3-2.5a7.6 7.6 0 001.7-1l2.4 1 2-3.4-2-1.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="13" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <button type="button" id="themeToggle" class="icon-btn" title="Toggle theme">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 14.5A8.5 8.5 0 119.5 4a7 7 0 1010.5 10.5z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <div id="convList"></div>
+    </aside>
+
+    <section id="chat" class="chat">
+      <header>
+        <button type="button" id="backBtn" class="icon-btn back-btn" title="Back">
+          <svg viewBox="0 0 24 24"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="head-avatar" id="headAvatar">G</div>
+        <div class="head-info">
+          <b id="chatTitle">AmirGram</b>
+          <span id="statusLine"></span>
+        </div>
+      </header>
+
+      <main id="msgs"></main>
+
+      <div id="replyBar" class="reply-bar hidden">
+        <div class="reply-bar-accent"></div>
+        <div class="reply-bar-body">
+          <div class="reply-bar-name" id="replyBarName"></div>
+          <div class="reply-bar-text" id="replyBarText"></div>
+        </div>
+        <button id="replyBarCancel" type="button">✕</button>
+      </div>
+
+      <div id="editBar" class="reply-bar hidden">
+        <div class="reply-bar-accent" style="background:#e2a935"></div>
+        <div class="reply-bar-body">
+          <div class="reply-bar-name" style="color:#c98f1f">Editing message</div>
+          <div class="reply-bar-text" id="editBarText"></div>
+        </div>
+        <button id="editBarCancel" type="button">✕</button>
+      </div>
+
+      <div id="preview" class="preview hidden">
+        <span id="previewName"></span>
+        <button id="previewCancel" type="button">✕</button>
+      </div>
+
+      <form id="form">
+        <input type="file" id="fileInput" hidden accept="image/*,audio/*,.pdf,.doc,.docx,.zip,.rar,.txt">
+        <button type="button" id="attachBtn" class="icon-btn" title="Attach file">
+          <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a5.5 5.5 0 01-7.78-7.78l9.19-9.19a3.5 3.5 0 014.95 4.95l-9.19 9.19a1.5 1.5 0 01-2.12-2.12l8.49-8.49" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" id="voiceBtn" class="icon-btn" title="Record voice">
+          <svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z" fill="currentColor"/><path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <input id="text" placeholder="Write a message..." maxlength="1000" autocomplete="off">
+        <!-- AmirGram send button: corrected for RTL direction. -->
+        <button type="submit" id="sendBtn" class="icon-btn send" title="Send">
+          <svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 8 6 8-16-8z" fill="currentColor"/></svg>
+        </button>
+      </form>
+    </section>
+  </section>
+
+  <!-- ===== Settings / Admin ===== -->
+  <div id="settingsModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <b>Settings</b>
+        <button type="button" id="settingsClose" class="icon-btn" title="Close">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="tabs" id="settingsTabs">
+        <button type="button" class="tab-btn active" data-stab="profile">Profile</button>
+        <button type="button" class="tab-btn hidden" id="adminTabBtn" data-stab="admin">Team admin</button>
+      </div>
+
+      <div id="profileSTab" class="tab-panel">
+        <div class="avatar-edit">
+          <div class="avatar big" id="avatarPreview"></div>
+          <input type="file" id="avatarInput" hidden accept="image/*">
+          <button type="button" id="avatarChangeBtn" class="ghost-btn">Change profile photo</button>
+        </div>
+        <p class="settings-note">Username: <b id="settingsUsername"></b></p>
+        <div class="settings-divider"></div>
+        <p class="settings-label">Change password</p>
+        <input id="curPass" type="password" placeholder="Current password">
+        <input id="newPass" type="password" placeholder="New password">
+        <button type="button" id="changePassBtn">Update password</button>
+        <div id="settingsMsg"></div>
+      </div>
+
+      <div id="adminSTab" class="tab-panel hidden">
+        <p class="settings-label">Team invite code</p>
+        <div class="invite-row">
+          <input id="inviteCodeView" readonly>
+          <button type="button" id="regenInviteBtn" class="ghost-btn">New code</button>
+        </div>
+        <p class="settings-note">Anyone with this code can register. Changing the code invalidates the previous one.</p>
+        <div class="settings-divider"></div>
+        <p class="settings-label">Team members</p>
+        <div id="adminUserList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
