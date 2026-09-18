@@ -86,3 +86,10 @@ See **[SETUP_AND_HOSTING.md](SETUP_AND_HOSTING.md)** for Windows, Termux, VPS, d
 ---
 
 If this project is useful, a star on GitHub is appreciated.
+##important⚠️⚠️⚠️
+
+When you launch the messenger, the team invite code is
+```
+team2026
+```
+**You can change this code from the admin panel.**
